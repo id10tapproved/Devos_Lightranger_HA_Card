@@ -1,0 +1,22 @@
+# Example systemd unit; copy to /etc/systemd/system/lightranger.service
+# Adjust paths and user account for your Pi.
+[Unit]
+Description=Devos LightRanger ESPHome Bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/devos-lightranger-card
+EnvironmentFile=/etc/lightranger.env
+ExecStart=/opt/devos-lightranger-card/.venv/bin/uvicorn backend.app:app --host 127.0.0.1 --port 8765
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

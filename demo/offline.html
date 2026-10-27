@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LightRanger UI demo</title><style>
+:root{color-scheme:dark;--card-background-color:#242e3c;--secondary-background-color:#334154;--primary-text-color:#f3f7fb;--secondary-text-color:#aebed1;--divider-color:#45566c;--primary-color:#7eb3f2}
+body{font-family:system-ui;background:#141d29;min-height:100vh;margin:0;padding:28px 12px;box-sizing:border-box}h1{color:#dce8f7;text-align:center;font-size:14px;letter-spacing:.1em;text-transform:uppercase}p{color:#92a8bf;font-size:12px;text-align:center}</style></head>
+<body><h1>Devos LightRanger · UI preview</h1><devos-lightranger-view></devos-lightranger-view><p>Local demo only · not connected to ESP32</p>
+<script src="../dist/devos-lightranger-view.js" type="module"></script><script>
+const el=document.querySelector('devos-lightranger-view');
+let s={connected:true,bluetooth:true,synchronized:true,battery:76,power:true,color:'Amber',brightness:64,panels:[true,true,false,true]};
+el.state=s;
+el.addEventListener('lightranger-command',e=>{const {type,value}=e.detail;if(type==='panel'){s.panels[value.index]=value.on;}else{s[type]=value;}el.state={...s,panels:[...s.panels]};});
+</script></body></html>

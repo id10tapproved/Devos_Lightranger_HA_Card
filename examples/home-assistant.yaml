@@ -1,0 +1,13 @@
+type: custom:devos-lightranger-card
+light: light.devos_lightranger_lightranger
+battery: sensor.devos_lightranger_lightranger_battery
+connection: binary_sensor.devos_lightranger_bluetooth_connected
+synchronized: binary_sensor.devos_lightranger_light_state_synchronized
+# Remove these two if your ESPHome exposes only its virtual RGB light.
+color: select.devos_lightranger_light_color
+brightness: number.devos_lightranger_brightness
+panels:
+  - switch.devos_lightranger_panel_1_selected
+  - switch.devos_lightranger_panel_2_selected
+  - switch.devos_lightranger_panel_3_selected
+  - switch.devos_lightranger_panel_4_selected

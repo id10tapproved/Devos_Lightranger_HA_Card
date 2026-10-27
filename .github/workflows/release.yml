@@ -1,0 +1,30 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: node -e "if (process.env.RELEASE_TAG !== 'v' + JSON.parse(require('fs').readFileSync('package.json')).version) process.exit(1)"
+      - run: python tools-build.py
+      - run: git diff --exit-code -- dist
+      - run: npm test
+      - run: python -m compileall -q backend
+      - name: Publish standalone JavaScript assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/*.js --verify-tag --title "$RELEASE_TAG" --generate-notes

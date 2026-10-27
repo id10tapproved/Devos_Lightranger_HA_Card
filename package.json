@@ -1,0 +1,9 @@
+{
+  "name": "devos-lightranger-card",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/package.mjs && node tests/smoke.mjs"
+  }
+}

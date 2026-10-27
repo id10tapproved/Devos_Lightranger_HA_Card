@@ -1,0 +1,5 @@
+# YAML-managed Lovelace resources. For storage mode use Dashboard Resources.
+# Do not add a duplicate if HACS already registered this module.
+resources:
+  - url: /hacsfiles/devos-lightranger-card/devos-lightranger-card.js
+    type: module
