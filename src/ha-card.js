@@ -32,7 +32,7 @@
     }
     set hass(value){this._hass=value;this._update();}
     getCardSize(){return 8;}
-    getGridOptions(){return {columns:6,min_columns:3,rows:7,min_rows:6};}
+    getGridOptions(){return {columns:6,min_columns:3,rows:7,min_rows:auto};}
     _entity(id) {return id?this._hass?.states?.[id]:undefined;}
     _exists(id) {return Boolean(this._entity(id));}
     _valid(entity) {return entity && !['unknown','unavailable'].includes(entity.state);}
