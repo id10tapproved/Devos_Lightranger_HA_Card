@@ -45,7 +45,7 @@
         return 8;
       }
       getGridOptions() {
-        return { columns: 6, min_columns: 3, rows: 7, min_rows: auto };
+        return { columns: 6, min_columns: 3, rows: 7, min_rows: "auto" };
       }
       _entity(id) {
         return id ? this._hass?.states?.[id] : void 0;
